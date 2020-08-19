@@ -5,8 +5,6 @@ set -eu
 _main() {
     _switch_to_repository
     rm .gitignore
-    ls -la
-    git status
     if _git_is_dirty || "$INPUT_SKIP_DIRTY_CHECK"; then
 
         echo "::set-output name=changes_detected::true";
@@ -41,7 +39,6 @@ _git_is_dirty() {
 _switch_to_branch() {
     echo "INPUT_BRANCH value: $INPUT_BRANCH";
     git fetch;
-    git branch -v;
     # Switch to branch from current Workflow run
     git checkout $INPUT_BRANCH;
 }
@@ -49,7 +46,6 @@ _switch_to_branch() {
 _add_files() {
     echo "INPUT_FILE_PATTERN: ${INPUT_FILE_PATTERN}";
     git add ${INPUT_FILE_PATTERN};
-    git status
 }
 
 _local_commit() {
