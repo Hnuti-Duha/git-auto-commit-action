@@ -4,6 +4,7 @@ set -eu
 
 _main() {
     _switch_to_repository
+    rm .gitignore
     ls -la
     git status
     if _git_is_dirty || "$INPUT_SKIP_DIRTY_CHECK"; then
